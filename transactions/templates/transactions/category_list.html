@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Categories</title>
+</head>
+<body>
+
+<h1>My Categories</h1>
+
+<a href="{% url 'add_category' %}">+ Add New Category</a>
+<br><br>
+
+<ul>
+    {% for category in categories %}
+        <li>
+            <strong>{{ category.name }}</strong>: {{ category.description }}
+        </li>
+    {% empty %}
+        <li>No categories found.</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'transaction_list' %}">← Back to Transactions</a>
+
+</body>
+</html>

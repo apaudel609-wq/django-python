@@ -4,13 +4,15 @@
 
 <ul>
     {% for t in transactions %}
-        <li>
-            <strong>{{ t.transaction_type }}</strong> — 
+    <li>
+        <a href="{% url 'transaction_detail' t.pk %}">
+            <strong>{{ t.transaction_type }}</strong> —
             {{ t.amount }} —
             {{ t.category.name }} —
             {{ t.date }}
-        </li>
+        </a>
+    </li>
     {% empty %}
-        <p>No transactions found.</p>
+    <p>No transactions found.</p>
     {% endfor %}
 </ul>

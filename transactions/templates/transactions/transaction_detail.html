@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Transaction Details</title>
+</head>
+
+<body>
+
+    <h1>Transaction Details</h1>
+
+    <p><strong>Date:</strong> {{ transaction.date }}</p>
+    <p><strong>Type:</strong> {{ transaction.get_transaction_type_display }}</p>
+    <p><strong>Amount:</strong> {{ transaction.amount }}</p>
+    <p><strong>Category:</strong> {{ transaction.category.name }}</p>
+    <p><strong>Note:</strong> {{ transaction.note }}</p>
+
+    <a href="{% url 'transaction_update' transaction.pk %}">Edit</a> |
+    <a href="{% url 'transaction_delete' transaction.pk %}">Delete</a> |
+    <a href="{% url 'transaction_list' %}">Back to List</a>
+
+</body>
+
+</html>

@@ -24,6 +24,7 @@ class Transaction(models.Model):
     )
 
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="transactions")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="transactions", null=True, blank=True)
 
     # CRITICAL FINTECH STANDARD: Use DecimalField for currency
     amount = models.DecimalField(max_digits=12, decimal_places=2)

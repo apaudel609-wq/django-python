@@ -1,9 +1,13 @@
 from django import forms
-from .models import Transaction
+from .models import Transaction, Category
 from datetime import date
 
 
 class TransactionForm(forms.ModelForm):
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].queryset = self.fields['category'].queryset.filter(user=user)
+
     class Meta:
         model = Transaction
         fields = ['category', 'amount', 'transaction_type', 'date', 'note']
@@ -29,3 +33,10 @@ class TransactionForm(forms.ModelForm):
             raise forms.ValidationError("Transaction date cannot be in the future.")
 
         return transaction_date
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'description']
+

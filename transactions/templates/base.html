@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Finance Tracker{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <nav class="bg-blue-600 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'dashboard' %}" class="text-white text-2xl font-bold">FinanceTracker</a>
+            <div>
+                {% if user.is_authenticated %}
+                <span class="text-blue-200 mr-4">Welcome, {{ user.username }}</span>
+                <a href="{% url 'account_logout' %}" class="text-white hover:text-blue-200">Logout</a>
+                {% else %}
+                <a href="{% url 'account_login' %}" class="text-white hover:text-blue-200">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 px-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-12">
+        <p>&copy; 2025 Finance Tracker. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
